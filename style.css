@@ -1,0 +1,61 @@
+@media (max-width: 2000px) {
+    body {
+        font-family: Arial, sans-serif; /* Fonte padrão da página */
+        padding-top: 80px; /* Tamanho do Header */
+    }
+
+    .static-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background-color: green;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Deixa uma sombra legal embaixo */
+        z-index: 1000; /* Ordem de empilhamento */
+    }
+
+    .static-header .logo {
+        font-size: 24px;
+        font-weight: bold;
+        position: absolute;
+        left: 20px;
+    }
+
+    .static-header nav {
+        display: flex;
+        justify-content: center;
+    }
+
+    .static-header a {
+        color: white;
+        font-size: 24px;
+        text-decoration: none;
+        padding: 25px 20px;
+        border-bottom: 3px solid transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* transition: all 0.3s ease; */
+    }
+
+    .static-header a:hover {
+        background-color: gray;
+        border-radius: 10px;
+    }
+
+    .static-header .active {
+        color: #8EF56F;
+        border-bottom: 3px solid #8EF56F;
+    }
+
+    .content {
+        padding: 20px;
+        height: 2000px;
+    }
+}
