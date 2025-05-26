@@ -17,7 +17,7 @@ document.querySelectorAll('.tab-link').forEach(link => {
     });
 });
 
-// Simulação de banco de dados de usuários
+// Simulação de banco de dados com outros usuários no site
 const usersDatabase = [
     { id: 1, name: "Rudinei Goularte", email: "rudinei@email.com" },
     { id: 2, name: "Cristina Dutra", email: "cristina@email.com" },
@@ -31,7 +31,15 @@ const usersDatabase = [
 // Supondo uma lista de amigos do usuário atual
 let friendsList = ["Pedro Prestes", "Pedro Dias", "Pedro Lunkes"];
 
-// Função para buscar amigos
+// Acrescente o Enter à busca
+document.getElementById('friend-search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('search-friend-btn').click();
+    }
+});
+
+// Função para buscar amigos 
 document.getElementById('search-friend-btn').addEventListener('click', function() {
     const searchTerm = document.getElementById('friend-search-input').value.toLowerCase();
     const resultsContainer = document.getElementById('search-results');
