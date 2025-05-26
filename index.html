@@ -3,74 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RachaAí</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Document</title>
 </head>
+<body>
+
 <header class="static-header">
     <div class="logo">RachaAí</div>
     <nav>
-        <a href="#" class="active"><i class="fas fa-home"></i></a>
-        <a href="#"><i class="fa-solid fa-wallet"></i></a>
-        <a href="#"><i class="fa-solid fa-plus"></i></i></a>
-        <a href="#"><i class="fa-solid fa-users"></i></a>
-        <a href="#"><i class="fa-solid fa-user-circle"></i></a>
+        <a href="#" class="tab-link active" data-tab="home"><i class="fa-solid fa-home"></i></a>
+        <a href="#" class="tab-link" data-tab="wallet"><i class="fa-solid fa-wallet"></i></a>
+        <a href="#" class="tab-link" data-tab="add"><i class="fa-solid fa-plus"></i></a>
+        <a href="#" class="tab-link" data-tab="group"><i class="fa-solid fa-users"></i></a>
+        <a href="#" class="tab-link" data-tab="profile"><i class="fa-solid fa-user-circle"></i></a>
     </nav>
 </header>
 
 <main>
-    <div class="feed">
-        <!-- Caixa de convite -->
-        <div class="post">
-            <div class="post-header">
-                <img src="https://media.licdn.com/dms/image/v2/D4D03AQEAULPt21WknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673557820430?e=1753920000&v=beta&t=5qcA54uefUHfGUqDugRzGo1DZpMbsYieafP_4NxfbOI" alt="Foto do usuário" class="post-avatar">
-                <div class="post-user">
-                    <b>pedroperez</b>
-                    <span class="post-type">Convite</span>
+    <!-- Aba Home -->
+    <div class="tab-content" id="home" style="display:flex;">
+        <div class="feed">
+            <!-- Caixa de convite -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEAULPt21WknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673557820430?e=1753920000&v=beta&t=5qcA54uefUHfGUqDugRzGo1DZpMbsYieafP_4NxfbOI" alt="Foto do usuário" class="post-avatar">
+                    <div class="post-user">
+                        <b>pedroperez</b>
+                        <span class="post-type">Convite</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>pedroperez te convidou para <b>Aniversário do Fred</b></p>
+                </div>
+                <div class="post-footer">
+                    <button class="accept-btn"><i class="fa-solid fa-check"></i> Aceitar</button>
+                    <button class="negate-btn"><i class="fa-solid fa-x"></i> Negar</button>
                 </div>
             </div>
-            <div class="post-content">
-                <p>pedroperez te convidou para <b>Aniversário do Fred</b></p>
-            </div>
-            <div class="post-footer">
-                <button class="accept-btn"><i class="fa-solid fa-check"></i> Aceitar</button>
-                <button class="negate-btn"><i class="fa-solid fa-x"></i></i> Negar</button>
-            </div>
-        </div>
-        
-         <!-- Caixa de pagamento -->
-        <div class="post">
-            <div class="post-header">
-                <img src="https://media.licdn.com/dms/image/v2/D4D03AQEAULPt21WknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673557820430?e=1753920000&v=beta&t=5qcA54uefUHfGUqDugRzGo1DZpMbsYieafP_4NxfbOI" alt="Foto do usuário" class="post-avatar">
-                <div class="post-user">
-                    <b>pedroperez</b>
-                    <span class="post-type">Pagamento</span>
+            <!-- Caixa de pagamento -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEAULPt21WknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673557820430?e=1753920000&v=beta&t=5qcA54uefUHfGUqDugRzGo1DZpMbsYieafP_4NxfbOI" alt="Foto do usuário" class="post-avatar">
+                    <div class="post-user">
+                        <b>pedroperez</b>
+                        <span class="post-type">Pagamento</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>pedroperez pagou R$ 80,00 de <b>Blackout</b></p>
+                </div>
+                <div class="post-footer">
+                    <button class="viewed-btn"><i class="fa-solid fa-check-double"></i> Visto</button>
                 </div>
             </div>
-            <div class="post-content">
-                <p>pedroperez pagou R$ 80,00 de <b>Blackout</b></p>
-            </div>
-            <div class="post-footer">
-                <button class="viewed-btn"><i class="fa-solid fa-check-double"></i> Visto</button>
-            </div>
-        </div>
-
-        <!-- Caixa de lembrete -->
-        <div class="post">
-            <div class="post-header">
-                <img src="https://media.licdn.com/dms/image/v2/C4E03AQGohCvakI97mA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1662724548226?e=1753920000&v=beta&t=6STaf2OmyAu0fA1eDwc2F6IVMrXHlsxs9ytGOi9mLrg" alt="Foto do usuário" class="post-avatar">
-                <div class="post-user">
-                    <b>lunkesbilola</b>
-                    <span class="post-type">Lembrete</span>
+            <!-- Caixa de lembrete -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://media.licdn.com/dms/image/v2/C4E03AQGohCvakI97mA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1662724548226?e=1753920000&v=beta&t=6STaf2OmyAu0fA1eDwc2F6IVMrXHlsxs9ytGOi9mLrg" alt="Foto do usuário" class="post-avatar">
+                    <div class="post-user">
+                        <b>lunkesbilola</b>
+                        <span class="post-type">Lembrete</span>
+                    </div>
                 </div>
-            </div>
-            <div class="post-content">
-                <p>lunkesbilola mandou um lembrete que você deve R$100,00 de <b>Pizzada da Campanha</b></p>
-            </div>
-            <div class="post-footer">
-                <button class="viewed-btn"><i class="fa-solid fa-check-double"></i> Visto</button>
+                <div class="post-content">
+                    <p>lunkesbilola mandou um lembrete que você deve R$100,00 de <b>Pizzada da Campanha</b></p>
+                </div>
+                <div class="post-footer">
+                    <button class="viewed-btn"><i class="fa-solid fa-check-double"></i> Visto</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Aba Wallet -->
+    <div class="tab-content" id="wallet" style="display:none;">
+        <div class="feed">
+            <div class="post">
+                <div class="post-content">
+                    <h2>Saldo: R$ 250,00</h2>
+                    <p>Últimos pagamentos:</p>
+                    <ul>
+                        <li>R$ 50,00 - Pizzada</li>
+                        <li>R$ 80,00 - Blackout</li>
+                        <li>R$ 30,00 - Churrasco</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aba Add -->
+    <div class="tab-content" id="add" style="display:none;">
+        <div class="feed">
+            <div class="post">
+                <div class="post-content">
+                    <h2>Criar novo evento ou pagamento</h2>
+                    <input type="text" placeholder="Descrição">
+                    <input type="number" placeholder="Valor">
+                    <button class="accept-btn">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aba Group -->
+    <div class="tab-content" id="group" style="display:none;">
+        <div class="feed">
+            <div class="post">
+                <div class="post-content">
+                    <h2>Adicionar Amigos</h2>
+                    <div class="friend-search">
+                        <input type="text" id="friend-search-input" placeholder="Buscar por nome ou email">
+                        <button id="search-friend-btn" class="accept-btn">Buscar</button>
+                    </div>
+                    <div id="search-results" class="search-results"></div>
+                    
+                    <h2>Seus Amigos</h2>
+                    <ul id="friends-list">
+                        <li> <button class="negate-btn remove-friend">Remover</button></li>
+                        <li> <button class="negate-btn remove-friend">Remover</button></li>
+                        <li> <button class="negate-btn remove-friend">Remover</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aba Profile -->
+    <div class="tab-content" id="profile" style="display:none;">
+        <div class="feed">
+            <div class="post">
+                <div class="post-content">
+                    <h2>Perfil</h2>
+                    <p>Usuário: pedroperez</p>
+                    <p>Email: pedroperez@email.com</p>
+                    <button class="negate-btn">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
+
+<script src="script.js"></script>
+</body>
 </html>

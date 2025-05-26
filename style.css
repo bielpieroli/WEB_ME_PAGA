@@ -44,7 +44,7 @@
     }
 
     .static-header a:hover {
-        background-color: gray;
+        background-color: rgb(1, 53, 1);
         border-radius: 10px;
         transition: all 0.3s ease;
     }
@@ -129,4 +129,50 @@
         background-color: lightseagreen;
         border-radius: 3px;
     }
+}
+
+.friend-search {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.friend-search input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-results {
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+}
+
+.friend-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.friend-result:last-child {
+    border-bottom: none;
+}
+
+#friends-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.remove-friend {
+    padding: 3px 8px;
+    font-size: 12px;
 }
