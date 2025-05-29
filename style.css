@@ -49,6 +49,11 @@
         transition: all 0.3s ease;
     }
 
+    .static-header a:hover i {
+        transform: scale(1.30);
+    }
+
+
     .static-header .active {
         color: #8EF56F;
         border-bottom: 3px solid #8EF56F;

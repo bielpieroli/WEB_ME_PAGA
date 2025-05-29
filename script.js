@@ -25,7 +25,8 @@ const usersDatabase = [
     { id: 4, name: "Laura Pazini", email: "laura@email.com" },
     { id: 5, name: "Pedro Prestes", email: "pedroprestes@email.com"},
     { id: 6, name: "Pedro Dias", email: "pedrodias@email.com"},
-    { id: 7, name: "Pedro Lunkes", email: "pedrolunkes@email.com"}
+    { id: 7, name: "Pedro Lunkes", email: "pedrolunkes@email.com"},
+    { id: 11, name: "Henrique Vieira Lima", email: "henrique@email.com"}
 ];
 
 // Supondo uma lista de amigos do usuário atual
