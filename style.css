@@ -60,8 +60,8 @@
     }
 
     /* Feed */
-    .feed {
-        max-width: 600px;
+    #feed {
+        width: 600px;
         margin: 0 auto;
         padding: 20px;
     }
@@ -133,6 +133,15 @@
         color: white;
         background-color: lightseagreen;
         border-radius: 3px;
+    }
+
+    .empty-msg {
+        color: lightgrey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
     }
 }
 
