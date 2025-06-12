@@ -34,14 +34,40 @@ const usersDatabase = new Map([
 const postDatabase = [
     { id_author: 6, type: "Convite", event: "Aniversário do Fred"},
     { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
+    { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
     { id_author: 7, type: "Lembrete", dinheiro: 2.00, event: "Vaquinha da cirurgia"}
+    
 ]
 ////////////////////////////
 
 // Código para a Aba Home
 // Simulação de banco de dados com posts
 function updateFeedHome() {
-    const feedHomeElement = document.getElementById('feed'); // Pega o bloco de feed
+    const feedHomeElement = document.getElementById('home'); // Pega o bloco de feed
     feedHomeElement.innerHTML = ''; // Limpa ele
 
     // Função para pegar o conteúdo do post baseado no tipo dele
@@ -94,7 +120,7 @@ function updateFeedHome() {
     });
 }
 
-document.getElementById('feed').addEventListener('click', function(event) {
+document.getElementById('home').addEventListener('click', function(event) {
     const button = event.target.closest('button');
     if (button) {
         const postElement = button.closest('.post');
