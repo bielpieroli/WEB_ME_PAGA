@@ -34,7 +34,7 @@ const usersDatabase = new Map([
 
 // Cada usuário teria seu database de post
 const postDatabase = [
-    { id_author: 6, type: "Convite", event: "Aniversário do Fred"},
+    { id_author: 6, type: "Convite", dinheiro: 30.00, event: "Aniversário do Fred"},
     { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
     { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
     { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
@@ -65,9 +65,9 @@ const postDatabase = [
 ]
 
 const eventsDatabase = new Map([
-    [1, {event: "Aniversário do Fred", cost: 80.0}],
-    [2, {event: "Última aula de arquivos", cost: 60.0}],
-    [3, {event: "Vaquinha da cirurgia", cost: 50.0}],    
+    [1, {event: "Blackout", cost: 80.0}],
+    [2, {event: "Casa do Barbosa", cost: 60.0}],
+    [3, {event: "Vaquinha da cirurgia", cost: 2.0}],    
 ])
 
 const friendshipDatabase = new Map([
@@ -91,7 +91,7 @@ function updateFeedHome() {
         const { type, event, dinheiro } = element;
         switch (type) {
             case 'Convite':
-                return `<p>${user.name} te convidou para <b>${event}</b></p>
+                return `<p>${user.name} te convidou para <b>${event}</b> no valor de R$${dinheiro}</p>
                         <button class="accept-btn"><i class="fa-solid fa-check"></i> Aceitar</button>
                         <button class="negate-btn"><i class="fa-solid fa-x"></i> Negar</button>`;
             case 'Pagamento':
@@ -136,12 +136,21 @@ function updateFeedHome() {
     });
 }
 
+// Remover o post do feed ao apertar o botão
 document.getElementById('home').addEventListener('click', function(event) {
     const button = event.target.closest('button');
     if (button) {
         const postElement = button.closest('.post');
         if (postElement && postElement.dataset.id !== undefined) {
             const id = parseInt(postElement.dataset.id);
+
+            if (button.className === "accept-btn") {
+                eventAccepted = postDatabase[id];
+                eventsDatabase.set(indexEvent, {event: eventAccepted.event, cost: eventAccepted.dinheiro})
+                indexEvent++;
+                updateEventsList();
+            }
+            
             postDatabase.splice(id, 1);
             updateFeedHome();
         }
@@ -274,6 +283,7 @@ function updateUserList(listId, buttonText) {
     }
 }
 
+// Cria evento
 document.getElementById('create-event-btn').addEventListener('click', function(e) {
     descricao = document.getElementById('description-event').value
     valor = document.getElementById('value-event').value
