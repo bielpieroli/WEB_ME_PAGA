@@ -24,7 +24,7 @@
         top: 80px;       /* Começa abaixo do header */
         left: 0;
         bottom: 0;       /* Estica até o fundo da tela */
-        width: 300px;
+        width: 280px;
         background-color: green;
         padding: 20px;
         box-sizing: border-box;
@@ -40,6 +40,11 @@
         border-bottom: 3px solid transparent;
         display: flex;
         flex-direction: column;
+        
+    }
+
+    .sidebar a:hover {
+        color: greenyellow; /*essa cor msm?*/
     }
 
     .static-header {
@@ -219,6 +224,14 @@
 }
 
 #friends-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+#connections-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -39,10 +39,7 @@
                 <div class="post-content">
                     <h2>Saldo: R$ 250,00</h2>
                     <p>Últimos pagamentos:</p>
-                    <ul>
-                        <li>R$ 50,00 - Pizzada</li>
-                        <li>R$ 80,00 - Blackout</li>
-                        <li>R$ 30,00 - Churrasco</li>
+                    <ul id = "events-list">
                     </ul>
                 </div>
             </div>
@@ -54,9 +51,12 @@
                 <div class="post">
                     <div class="post-content">
                         <h2>Criar novo evento ou pagamento</h2>
-                        <input type="text" placeholder="Descrição">
-                        <input type="number" placeholder="Valor">
-                        <button class="accept-btn">Adicionar</button>
+                        <input type="text" placeholder="Descrição" id = "description-event">
+                        <input type="number" placeholder="Valor" id = "value-event">
+                        <button id="create-event-btn">Adicionar</button>
+                        <h2>Seus Amigos</h2>
+                        <ul id="connections-list">
+                        </ul>
                     </div>
                 </div>
             </div>

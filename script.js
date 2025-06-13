@@ -1,3 +1,5 @@
+// Id do usuário atual, já que não temos login nem valores para armazenar a sessão
+const ID_USUARIO_ATUAL = 6;
 
 // Função que cuida das tabs, fazendo elas aparecerem ou não
 document.querySelectorAll('.tab-link').forEach(link => {
@@ -59,9 +61,23 @@ const postDatabase = [
     { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
     { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
     { id_author: 2, type: "Pagamento", dinheiro: 80.00, event: "Última aula de arquivos"},
-    { id_author: 7, type: "Lembrete", dinheiro: 2.00, event: "Vaquinha da cirurgia"}
-    
+    { id_author: 7, type: "Lembrete", dinheiro: 2.00, event: "Vaquinha da cirurgia"} 
 ]
+
+const eventsDatabase = new Map([
+    [1, {event: "Aniversário do Fred", cost: 80.0}],
+    [2, {event: "Última aula de arquivos", cost: 60.0}],
+    [3, {event: "Vaquinha da cirurgia", cost: 50.0}],    
+])
+
+const friendshipDatabase = new Map([
+    [1, { friend_id_1: 6, friend_id_2: 5 } ],
+    [2, { friend_id_1: 6, friend_id_2: 7 } ],
+    [3, { friend_id_1: 6, friend_id_2: 8 } ]
+]);
+
+indexFriendship = 4;
+indexEvent = 4;
 ////////////////////////////
 
 // Código para a Aba Home
@@ -133,8 +149,6 @@ document.getElementById('home').addEventListener('click', function(event) {
 });
 
 // Código para a Aba Group
-// Supondo uma lista de amigos do usuário atual
-let friendsList = ["Pedro Prestes", "Pedro Dias", "Pedro Lunkes"];
 
 // Acrescente o Enter à busca
 document.getElementById('friend-search-input').addEventListener('keydown', function(e) {
@@ -202,14 +216,25 @@ function displaySearchResults(results) {
     });
 }
 
+function findUserByField(map, field, value) {
+    for (const [key, user] of map.entries()) {
+        if (user[field] === value) {
+            return {key, user};
+        }
+    }
+    return null;
+}
+
 // Função para adicionar amigo
 function addFriend(friendName) {
-    if (!friendsList.includes(friendName)) {
-        friendsList.push(friendName);
-        updateFriendsList();
-        document.getElementById('search-results').style.display = 'none';
-        document.getElementById('friend-search-input').value = '';
-    }
+    const {key, newUser} = findUserByField(usersDatabase, "name", friendName)
+    friendshipDatabase.set(indexFriendship, {friend_id_1: ID_USUARIO_ATUAL, friend_id_2: key})
+    document.getElementById('search-results').style.display = 'none';
+    document.getElementById('friend-search-input').value = '';
+    indexFriendship++;
+    updateUserList('friends-list', 'Remover');
+    updateUserList('connections-list', 'Adicionar ao evento');
+
 }
 
 // Função para remover amigo
@@ -217,23 +242,59 @@ document.addEventListener('click', function(e) {
     if (e.target.classList.contains('remove-friend')) {
         const friendItem = e.target.parentElement;
         const friendName = friendItem.textContent.replace('Remover', '').trim();
-        friendsList = friendsList.filter(name => name !== friendName);
-        updateFriendsList();
+        const {key, user} = findUserByField(usersDatabase, "name", friendName)
+        for (const [friendshipId, friendship] of friendshipDatabase.entries()) {
+            if (friendship.friend_id_2 === key) {
+                friendshipDatabase.delete(friendshipId);
+            }
+        }
+        updateUserList('friends-list', 'Remover');
+        updateUserList('connections-list', 'Adicionar ao evento');
+
     }
 });
 
 // Função para atualizar a lista de amigos na tela
-function updateFriendsList() {
-    const friendsListElement = document.getElementById('friends-list');
-    friendsListElement.innerHTML = '';
+function updateUserList(listId, buttonText) {
+    const listElement = document.getElementById(listId);
 
-    friendsList.forEach(friend => {
+    listElement.innerHTML = '';
+
+    for (const [key, user] of usersDatabase) {
+        for (const friendship of friendshipDatabase.values()) {
+            if (key == friendship.friend_id_2 && friendship.friend_id_1 == ID_USUARIO_ATUAL) {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <img src="${user.pic}" alt="Foto do usuário" class="post-avatar">
+                    ${user.name} <button class="negate-btn remove-friend">${buttonText}</button>
+                `;
+                listElement.appendChild(li);
+            }
+        }
+    }
+}
+
+document.getElementById('create-event-btn').addEventListener('click', function(e) {
+    descricao = document.getElementById('description-event').value
+    valor = document.getElementById('value-event').value
+    eventsDatabase.set(indexEvent, {event: descricao, cost: valor})
+    indexEvent++
+    updateEventsList()
+    document.getElementById('description-event').value = ''
+    document.getElementById('value-event').value = ''
+});
+
+function updateEventsList() {
+    const listElement = document.getElementById('events-list');
+
+    listElement.innerHTML = '';
+    for(const [key, event] of eventsDatabase) {
         const li = document.createElement('li');
         li.innerHTML = `
-            ${friend} <button class="negate-btn remove-friend">Remover</button>
+            ${event.event} R$ ${event.cost}
         `;
-        friendsListElement.appendChild(li);
-    });
+        listElement.appendChild(li);
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -241,4 +302,6 @@ function updateFriendsList() {
 updateFeedHome()
 
 // Inicializa a lista de amigos
-updateFriendsList();
+updateUserList('friends-list', 'Remover');
+updateUserList('connections-list', 'Adicionar ao evento');
+updateEventsList()
