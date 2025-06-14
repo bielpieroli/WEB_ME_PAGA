@@ -36,15 +36,18 @@
         text-align: center;
         font-size: 24px;
         text-decoration: none;
-        padding: 25px 30px;
+        padding: 10px 0;
+        margin: 50px 0;
+        /* border-top: 3px solid transparent; */
         border-bottom: 3px solid transparent;
         display: flex;
         flex-direction: column;
-        
     }
 
     .sidebar a:hover {
-        color: greenyellow; /*essa cor msm?*/
+        border-color: #ffffff;
+        transition: border-color 0.3s ease;
+        /* color: greenyellow; essa cor msm? */
     }
 
     .static-header {
