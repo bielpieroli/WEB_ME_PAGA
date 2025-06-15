@@ -929,6 +929,7 @@ input:checked + .slider:before {
         pointer-events: none;
     }
 }
+
 #text {
     margin-left: 310px;
 }
