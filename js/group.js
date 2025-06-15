@@ -102,9 +102,7 @@ document.addEventListener('click', function(e) {
             
             updateFriendsList();
             // Atualiza também a lista de conexões se a função existir
-            if (typeof updateConnectionsList === 'function') {
-                updateConnectionsList();
-            }
+            updateConnectionsList();
         } else {
             console.error('Índice inválido:', arrayIndex);
         }

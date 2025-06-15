@@ -50,48 +50,60 @@ function setupWalletCards() {
 function renderDebtLists() {
     // Lista "Estão me devendo"
     const owedToMeList = document.getElementById('owed-to-me-list');
-    owedToMeList.innerHTML = debtDatabase.owedToMe.map(debt => `
-        <li class="debt-item">
-            <div class="debt-info">
-                <span class="debt-name">${debt.name}</span>
-                <span class="debt-amount">R$ ${debt.amount.toFixed(2)}</span>
-                <span class="debt-event">${debt.event}</span>
-            </div>
-            <button class="remind-btn">Lembrar</button>
-        </li>
-    `).join('');
-    
+    if (debtDatabase.owedToMe.length === 0) {
+        owedToMeList.innerHTML = '<li class="empty-msg">Não há caloteiros! Tudo lhe foi pago!</li>';
+    } else {
+        owedToMeList.innerHTML = debtDatabase.owedToMe.map(debt => `
+            <li class="debt-item">
+                <div class="debt-info">
+                    <span class="debt-name">${debt.name}</span>
+                    <span class="debt-amount">R$ ${debt.amount.toFixed(2)}</span>
+                    <span class="debt-event">${debt.event}</span>
+                </div>
+                <button class="remind-btn">Lembrar</button>
+            </li>
+        `).join('');
+    }
+
     // Lista "Estou devendo"
     const iOweList = document.getElementById('i-owe-list');
-    iOweList.innerHTML = debtDatabase.iOwe.map(debt => `
-        <li class="debt-item">
-            <div class="debt-info">
-                <span class="debt-name">${debt.name}</span>
-                <span class="debt-amount">R$ ${debt.amount.toFixed(2)}</span>
-                <span class="debt-event">${debt.event}</span>
-            </div>
-            <button class="pay-btn">Pagar</button>
-        </li>
-    `).join('');
-    
+    if (debtDatabase.iOwe.length === 0) {
+        iOweList.innerHTML = '<li class="empty-msg">Você não está devendo nada</li>';
+    } else {
+        iOweList.innerHTML = debtDatabase.iOwe.map(debt => `
+            <li class="debt-item">
+                <div class="debt-info">
+                    <span class="debt-name">${debt.name}</span>
+                    <span class="debt-amount">R$ ${debt.amount.toFixed(2)}</span>
+                    <span class="debt-event">${debt.event}</span>
+                </div>
+                <button class="pay-btn">Pagar</button>
+            </li>
+        `).join('');
+    }
+
     // Lista "Histórico"
     const historyList = document.getElementById('history-list');
     const sortedHistory = [...debtDatabase.history].sort((a, b) => {
-        return new Date(b.date) - new Date(a.date); // Ordena do mais recente para o mais antigo com base na data, talvez, conste pegar o horário tb
+        return new Date(b.date) - new Date(a.date); // Ordena do mais recente para o mais antigo
     });
 
-    historyList.innerHTML = sortedHistory.map(transaction => `
-        <li class="debt-item ${transaction.type}">
-            <div class="debt-info">
-                <span class="debt-name">${transaction.name}</span>
-                <span class="debt-amount">R$ ${transaction.amount.toFixed(2)}</span>
-                <span class="debt-event">${transaction.event}</span>
-                <span class="debt-date">${transaction.date}</span>
-            </div>
-            <span class="transaction-type">${transaction.type === 'received' ? 'Recebido' : 'Pago'}</span>
-        </li>
-    `).join('');
-    
+    if (sortedHistory.length === 0) {
+        historyList.innerHTML = '<li class="empty-msg">Não há histórico de dívidas anteriores</li>';
+    } else {
+        historyList.innerHTML = sortedHistory.map(transaction => `
+            <li class="debt-item ${transaction.type}">
+                <div class="debt-info">
+                    <span class="debt-name">${transaction.name}</span>
+                    <span class="debt-amount">R$ ${transaction.amount.toFixed(2)}</span>
+                    <span class="debt-event">${transaction.event}</span>
+                    <span class="debt-date">${transaction.date}</span>
+                </div>
+                <span class="transaction-type">${transaction.type === 'received' ? 'Recebido' : 'Pago'}</span>
+            </li>
+        `).join('');
+    }
+
     // Evento de relembrar a pessoa do pagamento
     document.querySelectorAll('.remind-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
