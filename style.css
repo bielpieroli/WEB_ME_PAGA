@@ -1,195 +1,115 @@
-@media (max-width: 2000px) {
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+/* Estilos base - aplicados a todas as telas */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+}
 
-    main {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-        box-sizing: border-box;
-    }
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-    .container {
-        display: flex;
-        min-height: calc(100vh - 80px); /* Subtrai a altura do header */
-        margin-top: 80px; /* Empurra o container para baixo do header */
-    }
+.container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
+}
 
-    .sidebar {
-        position: fixed;
-        top: 80px;       /* Começa abaixo do header */
-        left: 0;
-        bottom: 0;       /* Estica até o fundo da tela */
-        width: 280px;
-        background-color: green;
-        padding: 20px;
-        box-sizing: border-box;
-    }
+.sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    background-color: green;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-    .sidebar a {
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        font-size: 24px;
-        text-decoration: none;
-        padding: 10px 0;
-        margin: 50px 0;
-        /* border-top: 3px solid transparent; */
-        border-bottom: 3px solid transparent;
-        display: flex;
-        flex-direction: column;
-    }
+.sidebar a {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 10px 0;
+    margin: 50px 0;
+    border-bottom: 3px solid transparent;
+    display: flex;
+    flex-direction: column;
+}
 
-    .sidebar a:hover {
-        border-color: #ffffff;
-        transition: border-color 0.3s ease;
-        /* color: greenyellow; essa cor msm? */
-    }
+.sidebar a:hover {
+    border-color: #ffffff;
+    transition: border-color 0.3s ease;
+}
 
-    .static-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 80px;
-        background-color: green;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 20px;
-        z-index: 1000; /* Ordem de empilhamento */
-    }
+.static-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: green;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+}
 
-    .static-header .logo {
-        width: 120px;
-        height: 120px;
-        position: absolute;
-        left: 4.7%
-    }
+.static-header .logo {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 4.7%
+}
 
-    .static-header nav {
-        display: flex;
-        justify-content: center;
-    }
+.static-header nav {
+    display: flex;
+    justify-content: center;
+}
 
-    .static-header a {
-        color: white;
-        font-size: 24px;
-        text-decoration: none;
-        padding: 25px 60px;
-        border-bottom: 3px solid transparent;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.static-header a {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 25px 60px;
+    border-bottom: 3px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .static-header a:hover {
-        background-color: rgb(1, 53, 1);
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
+.static-header a:hover {
+    background-color: rgb(1, 53, 1);
+    border-radius: 10px;
+    transition: all 0.3s ease-in;
+}
 
-    .static-header a:hover i {
-        transform: scale(1.30);
-    }
+.static-header a:hover i {
+    transform: scale(1.30);
+}
 
+.static-header .active {
+    color: #8EF56F;
+    border-bottom: 3px solid #8EF56F;
+    transition: all 0.3s ease-in-out;
+}
 
-    .static-header .active {
-        color: #8EF56F;
-        border-bottom: 3px solid #8EF56F;
-    }
+.tab-content {
+    width: 600px;
+    margin: 0 auto;
+}
 
-    .tab-content {
-        width: 600px;
-        margin: 0 auto;
-    }
-
-    /* Aba Home */
-    .post {
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    
-    .post-header {
-        display: flex;
-        align-items: center;
-        padding: 12px 16px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .post-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-
-    .post-user {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .post-type {
-        font-size: 12px;
-        color: #999;
-    }
-
-    .post-content {
-        padding: 5px 16px;
-    }
-    
-    .post-footer {
-        padding: 8px 16px;
-        border-top: 1px solid #eee;
-    }
-
-    .accept-btn, .negate-btn, .viewed-btn, .create-event-btn {
-        background: none;
-        border: none;
-        color: #555;
-        font-size: 14px;
-        margin-right: 15px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .accept-btn:hover, .create-event-btn:hover {
-        color: white;
-        background-color: green;
-        border-radius: 3px;
-    }
-
-    .negate-btn:hover {
-        color: white;
-        background-color: red;
-        border-radius: 3px;
-    }
-
-    .viewed-btn:hover {
-        color: white;
-        background-color: lightseagreen;
-        border-radius: 3px;
-    }
-
-    .empty-msg {
-        color: lightgrey;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-align: center;
-    }
-
-    /* Notificações */
-    #notification {
+/* Notificações */
+#notification {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -204,27 +124,119 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    }
-
-    #notification.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .notification-success {
-        background: #002c01;
-    }
-    
-    .notification-error {
-        background: #c62828;
-    }
-
-    #notification i {
-        font-size: 1.2em;
-    }
 }
 
-/* Aba Wallet */
+#notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification-success {
+    background: #003e01;
+}
+
+.notification-reminder {
+    background: #c2a422;
+}
+
+.notification-error {
+    background: #7a0f0f;
+}
+
+#notification i {
+    font-size: 1.2em;
+}
+
+/************************************************************/
+/* Aba Home
+/************************************************************/
+.post {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-type {
+    font-size: 16px;
+    color: #999;
+}
+
+.post-content {
+    padding: 5px 16px;
+    font-size: 18px;
+}
+
+.post-footer {
+    padding: 8px 16px;
+    border-top: 1px solid #eee;
+}
+
+.accept-btn, .negate-btn, .viewed-btn, .create-event-btn {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 16px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1%;
+}
+
+.accept-btn:hover, .create-event-btn:hover {
+    color: white;
+    background-color: green;
+    border-radius: 3px;
+    transform: scale(1.1);
+}
+
+.negate-btn:hover {
+    color: white;
+    background-color: red;
+    border-radius: 3px;
+    transform: scale(1.1);
+}
+
+.viewed-btn:hover {
+    color: white;
+    background-color: lightseagreen;
+    border-radius: 3px;
+    transform: scale(1.1);
+}
+
+.empty-msg {
+    color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+/************************************************************/
+/* Aba Wallet
+/************************************************************/
 #wallet .wallet-cards {
     display: flex;
     justify-content: space-between;
@@ -237,7 +249,7 @@
     padding: 20px;
     border-radius: 16px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     background-color: #fff;
     border: none;
@@ -293,7 +305,7 @@
     white-space: nowrap;
 }
 
-/* Ícones decorativos */
+/* Ícones decorativos dos cards */
 #wallet .wallet-card::after {
     position: absolute;
     top: 12px;
@@ -315,10 +327,12 @@
 }
 
 #wallet .wallet-card:hover {
-    transform: translateY(-4px);
+    /* Combinando os dois efeitos de transformação */
+    transform: translateY(-4px) scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* Lista de devedores */
 #wallet .debt-list {
     display: none;
     margin-top: 10px;
@@ -365,7 +379,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 15px;
     margin-left: 10px;
 }
 
@@ -379,8 +393,21 @@
     color: white;
 }
 
+#wallet .remind-btn:hover,
+#wallet .pay-btn:hover {
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+#wallet .remind-btn:hover {
+    background-color: #1a631c;
+}
+
+#wallet .pay-btn:hover {
+    background-color: #6c1d17;
+}
+
 #wallet .transaction-type {
-    font-size: 12px;
+    font-size: 15px;
     padding: 3px 8px;
     border-radius: 4px;
     margin-left: 10px;
@@ -496,8 +523,11 @@
     font-size: 1.1em;
 }
 
+/************************************************************/
+/* Aba Add
+/************************************************************/
 
-/* Aba Add */
+/* A lista de amigos */
 #connections-list {
     list-style: none;
     padding: 0;
@@ -508,12 +538,11 @@
 }
 
 #connections-list li {
-    padding: 0;
-    margin: 0;
     border-radius: 8px;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     transition: all 0.2s ease;
+    border: 1px solid #eee;
 }
 
 #connections-list li:hover {
@@ -551,21 +580,7 @@
     color: #333;
 }
 
-
-/* Efeito de "card" mais pronunciado */
-#connections-list li {
-    border: 1px solid #eee;
-}
-
-/* Espaçamento para lista vazia */
-.empty-msg {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-    font-style: italic;
-}
-
-/* Estilos para a modal de rateio */
+/* Modal para confirmar se você mesmo está incluso */
 .rateio-modal {
     position: fixed;
     top: 0;
@@ -693,7 +708,11 @@ input:checked + .slider:before {
     to { opacity: 1; }
 }
 
-/* Aba Amigos */
+/************************************************************/
+/* Aba Group
+/************************************************************/
+
+/* Pesquisa */
 .friend-search, .event-creation{
     display: flex;
     margin-bottom: 20px;
@@ -707,6 +726,7 @@ input:checked + .slider:before {
     border: 1px solid #ccc;
 }
 
+/* Resultado */
 .search-results {
     margin-bottom: 20px;
     border: 1px solid #eee;
@@ -735,17 +755,9 @@ input:checked + .slider:before {
     border-bottom: 1px solid #eee;
 }
 
-#connections-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-}
-
 .remove-friend {
     padding: 3px 8px;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .profile-container {
@@ -773,6 +785,150 @@ input:checked + .slider:before {
     vertical-align: middle;
 }
 
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .static-header {
+        padding: 0 10px;
+    }
+    
+    .static-header nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-left: 60px;
+    }
+    
+    .static-header a {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+    
+    .tab-content {
+        width: 100%;
+        max-width: 500px;
+        padding: 10px;
+    }
+    
+    #wallet .wallet-cards {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .event-creation {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .event-creation input,
+    .event-creation button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .friend-search {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .friend-search input,
+    .friend-search button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #notification {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-30px);
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        pointer-events: none;
+    }
+
+    #notification.show {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .static-header {
+        height: 70px;
+        padding: 0 5px;
+    }
+    
+    .static-header .logo {
+        width: 62px;
+        height: 62px;
+        left: 10px;
+    }
+    
+    .static-header nav {
+        margin-left: 70px;
+        gap: 2px;
+    }
+    
+    .static-header a {
+        padding: 8px 8px;
+        font-size: 12px;
+        min-width: 40px;
+    }
+    
+    .static-header a i {
+        font-size: 14px;
+    }
+    
+    .container {
+        margin-top: 72px;
+        min-height: calc(100vh - 70px);
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .tab-content {
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+    }
+    
+    .post {
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    
+    .post-content {
+        padding: 10px;
+    }
+    
+    /* Ajustes adicionais para formulários */
+    .event-creation input,
+    .friend-search input {
+        padding: 12px;
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+    
+    .create-event-btn,
+    .search-friend-btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    #notification {
+        top: 10px;
+        width: 95%;
+        pointer-events: none;
+    }
+}
 #text {
     margin-left: 310px;
 }
