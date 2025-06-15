@@ -102,7 +102,7 @@ function renderDebtLists() {
             const event = debtItem.querySelector('.debt-event').textContent;
             
             if (confirm(`Confirmar pagamento de R$ ${amount.toFixed(2)} para ${name} (${event})?`)) {
-                // Remove a dívida de `iOwe`
+                // 1. Remove a dívida de `iOwe`
                 const debtIndex = debtDatabase.iOwe.findIndex(debt => 
                     debt.name === name && 
                     debt.amount === amount && 
@@ -112,7 +112,7 @@ function renderDebtLists() {
                 if (debtIndex !== -1) {
                     const paidDebt = debtDatabase.iOwe.splice(debtIndex, 1)[0];
                     
-                    // Adiciona ao histórico como "paid"
+                    // 2. Adiciona ao histórico como "paid"
                     debtDatabase.history.push({
                         name: paidDebt.name,
                         amount: paidDebt.amount,
@@ -121,7 +121,7 @@ function renderDebtLists() {
                         type: 'paid'
                     });
                     
-                    // Atualiza a interface
+                    // 3. Atualiza a interface
                     updateWallet();
                     renderDebtLists();
                     alert('Pagamento registrado com sucesso!');
@@ -145,5 +145,4 @@ document.addEventListener('DOMContentLoaded', function() {
 document.querySelector('.tab-link[data-tab="wallet"]').addEventListener('click', function() {
     updateWallet();
     renderDebtLists();
-    setupWalletCards();
 });
