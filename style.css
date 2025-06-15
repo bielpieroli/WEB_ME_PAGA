@@ -772,3 +772,7 @@ input:checked + .slider:before {
     display: inline-block;
     vertical-align: middle;
 }
+
+#text {
+    margin-left: 310px;
+}
