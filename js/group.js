@@ -33,10 +33,11 @@ document.getElementById('search-friend-btn').addEventListener('click', function(
     displaySearchResults(results);
 });
 
+
 // Função para exibir resultados da busca
 function displaySearchResults(results) {
     const resultsContainer = document.getElementById('search-results');
-    resultsContainer.innerHTML = ''; // Limpa o container de resultados
+    resultsContainer.innerHTML = '';
     resultsContainer.style.display = 'block';
 
     if (results.length === 0) {
@@ -44,8 +45,18 @@ function displaySearchResults(results) {
         return;
     }
 
-    // Adiciona uma linha de resultado para cada usuário encontrado
-    results.forEach(({user, index}) => {
+    // Filtra resultados: remove usuários já adicionados
+    const filteredResults = results.filter(({ index }) => {
+        return !friendshipDatabase.includes(Number(index)); // Convertemos para número para garantir a comparação
+    });
+
+    if (filteredResults.length === 0) {
+        resultsContainer.innerHTML = '<p>Nenhum usuário novo encontrado</p>';
+        return;
+    }
+
+    // Adiciona apenas usuários que não estão na lista de amigos
+    filteredResults.forEach(({ user, index }) => {
         const resultDiv = document.createElement('div');
         resultDiv.className = 'friend-result';
         resultDiv.innerHTML = `
@@ -59,11 +70,17 @@ function displaySearchResults(results) {
     document.querySelectorAll('.add-friend').forEach(button => {
         button.addEventListener('click', function() {
             const userId = this.getAttribute('data-id');
-            friendshipDatabase.push(userId);
-            document.getElementById('search-results').style.display = 'none';
-            document.getElementById('friend-search-input').value = '';
-            updateUserList('friends-list', 'Remover');
-            updateUserList('connections-list', 'Adicionar ao evento');
+            
+            // Verificação adicional para garantir que não está duplicando
+            if (!friendshipDatabase.includes(Number(userId))) {
+                friendshipDatabase.push(Number(userId));
+                document.getElementById('search-results').style.display = 'none';
+                document.getElementById('friend-search-input').value = '';
+                updateUserList('friends-list', 'Remover');
+                updateUserList('connections-list', 'Adicionar ao evento');
+            } else {
+                alert('Este usuário já está na sua lista de amigos!');
+            }
         });
     });
 }

@@ -63,9 +63,22 @@ document.getElementById('home').addEventListener('click', function(event) {
 
     // Se o botão for de aceitar, adiciona o evento no post na database de eventos do usuário
     if (button.className === "accept-btn") {
-        eventAccepted = postDatabase[id];
-        eventsDatabase.push({event: eventAccepted.event, cost: eventAccepted.dinheiro})
-        updateEventsList();
+        const eventAccepted = postDatabase[id];
+        const author = usersDatabase[eventAccepted.id_author];
+        
+        // Cria um novo objeto de dívida com todas as informações necessárias
+        const newDebt = {
+            name: author.name,
+            amount: eventAccepted.dinheiro,
+            event: eventAccepted.event,
+            date: new Date().toISOString().split('T')[0] // Data atual no formato YYYY-MM-DD
+        };
+
+        debtDatabase.iOwe.push(newDebt);
+
+        // Atualiza as listas de dívidas e a lista de dívidas
+        updateWallet();
+        renderDebtLists(); 
     }
 
     // Remove o post da listas de posts e atualiza o feed
