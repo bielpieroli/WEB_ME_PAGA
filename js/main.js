@@ -1,51 +1,78 @@
-
+// ========== SISTEMA DE ABAS ==========
 // Função que cuida das tabs, fazendo elas aparecerem ou não
 document.querySelectorAll('.tab-link').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
-
+        
         // Remove active de todos
         document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
         this.classList.add('active');
-
+        
         // Esconde todos os conteúdos
         document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
-
+        
         // Mostra somente o conteúdo clicado
         const target = this.getAttribute('data-tab');
         document.getElementById(target).style.display = 'block';
     });
 });
 
-// Inicializa a wallet quando a aba é carregada
+// ========== INICIALIZAÇÃO ==========
 document.addEventListener('DOMContentLoaded', function() {
-    // Verifica se estamos na aba wallet
-    if (document.getElementById('wallet')) {
-        updateWallet();
-        setupWalletCards();
-        renderDebtLists();
-    }
+    // Inicializa TODAS as abas de uma vez
+    initializeAllTabs();
+    
+    // Configura os event listeners para mudança de aba e atualização das informações
+    setupTabSwitching();
 });
 
-// Atualiza as listas quando muda para as respectivas abas
-document.addEventListener('click', function(e) {
-    if (e.target.matches('.tab-link[data-tab="group"]')) {
-        setTimeout(updateFriendsList, 100);
-    }
-    if (e.target.matches('.tab-link[data-tab="add"]')) {
-        setTimeout(updateConnectionsList, 100);
-    }
-});
-
-
-// Atualiza a wallet quando a aba é clicada
-document.querySelector('.tab-link[data-tab="wallet"]').addEventListener('click', function() {
+function initializeAllTabs() {
+    // Home
+    updateFeedHome();
+    
+    // Wallet
     updateWallet();
+    setupWalletCards();
     renderDebtLists();
-});
+    
+    // Add
+    setupEventCreation();
+    
+    // Group e Add (listas de amigos)
+    updateFriendsList();
+    updateConnectionsList();
+    
+}
 
-///////////////////////////////////////////////////////////////////////////////
-
-updateFeedHome()
-updateFriendsList();
-updateConnectionsList();
+function setupTabSwitching() {
+    document.addEventListener('click', function(e) {
+        if (!e.target.matches('.tab-link')) return;
+        
+        const tabName = e.target.dataset.tab;
+        
+        // De acordo com a aba, atualiza as informações, garantindo que esteja tudo certo
+        setTimeout(() => {
+            switch(tabName) {
+                case 'home':
+                   updateFeedHome();
+                    break;
+                    
+                case 'wallet':
+                    updateWallet();
+                    renderDebtLists();
+                    break;
+                    
+                case 'group':
+                    updateFriendsList();
+                    break;
+                    
+                case 'add':
+                    updateConnectionsList();
+                    break;
+                    
+                case 'profile':
+                    break;
+            }
+        }, 50);
+    });
+}

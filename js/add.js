@@ -1,14 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Verifica se estamos na aba add
-    if (document.getElementById('add')) {
-        setupEventCreation();
-        // Chama a nova função
-        if (typeof updateConnectionsList === 'function') {
-            updateConnectionsList();
-        }
-    }
-});
-
 function setupEventCreation() {
     const createEventBtn = document.querySelector('.create-event-btn');
     if (createEventBtn) {
@@ -115,9 +104,8 @@ async function createEvent() {
 // Função para quando o usuário clica na aba Add
 document.querySelector('.tab-link[data-tab="add"]')?.addEventListener('click', function() {
     // Usa a nova função
-    if (typeof updateConnectionsList === 'function') {
-        updateConnectionsList();
-    }
+    updateConnectionsList();
+
 });
 
 async function askIncludeSelf() {
@@ -174,5 +162,33 @@ async function askIncludeSelf() {
                 resolve(false);
             }
         });
+    });
+}
+
+// Função específica para atualizar lista de conexões na aba Add
+function updateConnectionsList() {
+    const listElement = document.getElementById('connections-list');
+    if (!listElement) return;
+
+    listElement.innerHTML = '';
+    
+    if (friendshipDatabase.length === 0) {
+        listElement.innerHTML = '<li class="empty-msg">Nenhum amigo adicionado ainda</li>';
+        return;
+    }
+
+    friendshipDatabase.forEach(friendId => {
+        const friend = usersDatabase.find(user => user.id === friendId);
+        if (!friend) return;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <label class="connection-item">
+                <input type="checkbox" data-id="${friend.id}">
+                <img src="${friend.pic}" alt="Foto de ${friend.name}" class="post-avatar">
+                <span>${friend.name}</span>
+            </label>
+        `;
+        listElement.appendChild(li);
     });
 }

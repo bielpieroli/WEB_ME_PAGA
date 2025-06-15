@@ -189,7 +189,6 @@
     }
 
     /* Notificações */
-    
     #notification {
     position: fixed;
     top: 20px;
@@ -213,7 +212,7 @@
     }
 
     .notification-success {
-        background: #003f02;
+        background: #002c01;
     }
     
     .notification-error {
@@ -319,7 +318,6 @@
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
-
 
 #wallet .debt-list {
     display: none;
@@ -497,7 +495,6 @@
 .payment-btn i {
     font-size: 1.1em;
 }
-
 
 
 /* Aba Add */

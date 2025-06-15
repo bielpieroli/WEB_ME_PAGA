@@ -75,14 +75,13 @@ function displaySearchResults(results) {
                 friendshipDatabase.push(userId);
                 document.getElementById('search-results').style.display = 'none';
                 document.getElementById('friend-search-input').value = '';
+
+                // Atualiza as listas
                 updateFriendsList();
-                // Atualiza também a lista de conexões se a função existir
-                if (typeof updateConnectionsList === 'function') {
-                    updateConnectionsList();
-                }
-                console.log('Amigo adicionado. friendshipDatabase:', [...friendshipDatabase]);
-            } else {
-                alert('Este usuário já está na sua lista de amigos!');
+                updateConnectionsList();
+
+                // DEBUG LISTA DE AMIGOS
+                // console.log('Amigo adicionado. friendshipDatabase:', [...friendshipDatabase]);
             }
         });
     });
@@ -94,7 +93,7 @@ document.addEventListener('click', function(e) {
         const arrayIndex = parseInt(e.target.dataset.index);
         
         // DEBUGS DE REMOÇÃO
-        // console.log('Tentando remover amigo no índice do array:', arrayIndex);
+        // console.log('Tentando remover amigo:', arrayIndex);
         // console.log('friendshipDatabase antes:', [...friendshipDatabase]);
         
         if (arrayIndex >= 0 && arrayIndex < friendshipDatabase.length) {
@@ -143,38 +142,4 @@ function updateFriendsList() {
         listElement.appendChild(li);
     });
 }
-
-// Função específica para atualizar lista de conexões na aba Add
-function updateConnectionsList() {
-    const listElement = document.getElementById('connections-list');
-    if (!listElement) return;
-
-    listElement.innerHTML = '';
-    
-    if (friendshipDatabase.length === 0) {
-        listElement.innerHTML = '<li class="empty-msg">Nenhum amigo adicionado ainda</li>';
-        return;
-    }
-
-    friendshipDatabase.forEach(friendId => {
-        const friend = usersDatabase.find(user => user.id === friendId);
-        if (!friend) return;
-
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <label class="connection-item">
-                <input type="checkbox" data-id="${friend.id}">
-                <img src="${friend.pic}" alt="Foto de ${friend.name}" class="post-avatar">
-                <span>${friend.name}</span>
-            </label>
-        `;
-        listElement.appendChild(li);
-    });
-}
-
-// Inicialização quando a página carrega
-document.addEventListener('DOMContentLoaded', function() {
-    updateFriendsList();
-    updateConnectionsList();
-});
 
