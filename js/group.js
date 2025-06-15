@@ -33,7 +33,6 @@ document.getElementById('search-friend-btn').addEventListener('click', function(
     displaySearchResults(results);
 });
 
-
 // Função para exibir resultados da busca
 function displaySearchResults(results) {
     const resultsContainer = document.getElementById('search-results');
@@ -47,7 +46,7 @@ function displaySearchResults(results) {
 
     // Filtra resultados: remove usuários já adicionados
     const filteredResults = results.filter(({ index }) => {
-        return !friendshipDatabase.includes(Number(index)); // Convertemos para número para garantir a comparação
+        return !friendshipDatabase.includes(Number(index));
     });
 
     if (filteredResults.length === 0) {
@@ -69,15 +68,19 @@ function displaySearchResults(results) {
     // Adiciona interação aos botões de adicionar
     document.querySelectorAll('.add-friend').forEach(button => {
         button.addEventListener('click', function() {
-            const userId = this.getAttribute('data-id');
+            const userId = parseInt(this.getAttribute('data-id'));
             
             // Verificação adicional para garantir que não está duplicando
-            if (!friendshipDatabase.includes(Number(userId))) {
-                friendshipDatabase.push(Number(userId));
+            if (!friendshipDatabase.includes(userId)) {
+                friendshipDatabase.push(userId);
                 document.getElementById('search-results').style.display = 'none';
                 document.getElementById('friend-search-input').value = '';
-                updateUserList('friends-list', 'Remover');
-                updateUserList('connections-list', 'Adicionar ao evento');
+                updateFriendsList();
+                // Atualiza também a lista de conexões se a função existir
+                if (typeof updateConnectionsList === 'function') {
+                    updateConnectionsList();
+                }
+                console.log('Amigo adicionado. friendshipDatabase:', [...friendshipDatabase]);
             } else {
                 alert('Este usuário já está na sua lista de amigos!');
             }
@@ -88,25 +91,90 @@ function displaySearchResults(results) {
 // Função para remover amigo
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('remove-friend')) {
-        const index = e.target.dataset.id;
-        friendshipDatabase.splice(index, 1);
-        updateUserList('friends-list', 'Remover');
-        updateUserList('connections-list', 'Adicionar ao evento');
+        const arrayIndex = parseInt(e.target.dataset.index);
+        
+        // DEBUGS DE REMOÇÃO
+        // console.log('Tentando remover amigo no índice do array:', arrayIndex);
+        // console.log('friendshipDatabase antes:', [...friendshipDatabase]);
+        
+        if (arrayIndex >= 0 && arrayIndex < friendshipDatabase.length) {
+            friendshipDatabase.splice(arrayIndex, 1);
+            console.log('friendshipDatabase depois:', [...friendshipDatabase]);
+            
+            updateFriendsList();
+            // Atualiza também a lista de conexões se a função existir
+            if (typeof updateConnectionsList === 'function') {
+                updateConnectionsList();
+            }
+        } else {
+            console.error('Índice inválido:', arrayIndex);
+        }
     }
 });
 
-// Função para atualizar a lista de amigos na tela
-function updateUserList(listId, buttonText) {
-    const listElement = document.getElementById(listId);
+// Função específica para atualizar lista de amigos na aba Group
+function updateFriendsList() {
+    const listElement = document.getElementById('friends-list');
+    if (!listElement) return;
+
+    // DEBUG DA LISTA DE AMIGOS
+    // console.log('Atualizando lista de amigos. friendshipDatabase:', [...friendshipDatabase]);
 
     listElement.innerHTML = '';
-    friendshipDatabase.forEach((friendId, index) => {
-        const friend = usersDatabase[friendId];
+    
+    if (friendshipDatabase.length === 0) {
+        listElement.innerHTML = '<li class="empty-msg">Nenhum amigo adicionado ainda</li>';
+        return;
+    }
+
+    friendshipDatabase.forEach((friendId, arrayIndex) => {
+        const friend = usersDatabase.find(user => user.id === friendId);
+        if (!friend) {
+            console.error('Usuário não encontrado para ID:', friendId);
+            return;
+        }
+
         const li = document.createElement('li');
         li.innerHTML = `
             <img src="${friend.pic}" alt="Foto do usuário" class="post-avatar">
-            ${friend.name} <button class="negate-btn remove-friend" data-id=${index}>${buttonText}</button>
+            ${friend.name} 
+            <button class="negate-btn remove-friend" data-index="${arrayIndex}">Remover</button>
         `;
         listElement.appendChild(li);
     });
 }
+
+// Função específica para atualizar lista de conexões na aba Add
+function updateConnectionsList() {
+    const listElement = document.getElementById('connections-list');
+    if (!listElement) return;
+
+    listElement.innerHTML = '';
+    
+    if (friendshipDatabase.length === 0) {
+        listElement.innerHTML = '<li class="empty-msg">Nenhum amigo adicionado ainda</li>';
+        return;
+    }
+
+    friendshipDatabase.forEach(friendId => {
+        const friend = usersDatabase.find(user => user.id === friendId);
+        if (!friend) return;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <label class="connection-item">
+                <input type="checkbox" data-id="${friend.id}">
+                <img src="${friend.pic}" alt="Foto de ${friend.name}" class="post-avatar">
+                <span>${friend.name}</span>
+            </label>
+        `;
+        listElement.appendChild(li);
+    });
+}
+
+// Inicialização quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    updateFriendsList();
+    updateConnectionsList();
+});
+

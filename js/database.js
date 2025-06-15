@@ -11,20 +11,22 @@ const usersDatabase = [
     {id: 5, name: "Pedro Perez", pic: "https://media.licdn.com/dms/image/v2/D4D03AQEAULPt21WknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673557820430?e=1753920000&v=beta&t=5qcA54uefUHfGUqDugRzGo1DZpMbsYieafP_4NxfbOI", email: "pedrodias@email.com",
         post: [
             { id_author: 4, type: "Convite", dinheiro: 30.00, event: "Aniversário do Fred"},
-            { id_author: 6, type: "Lembrete", dinheiro: 2.00, event: "Vaquinha da cirurgia"}
+            { id_author: 6, type: "Lembrete", dinheiro: 2.00, event: "Vaquinha da cirurgia"},
+            { id_author: 7, type: "Pagamento", dinheiro: 50.00, event: "Blackout"}
         ],
         debtDatabase : {
             owedToMe: [
-                { name: "Rudinei Goularte", amount: 50.00, event: "Jantar", date: "2023-05-15" },
-                { name: "Cristina Dutra", amount: 30.00, event: "Cinema", date: "2023-06-01" }
+                { name: "Pedro Lunkes", amount: 50.00, event: "Jantar", date: "2023-05-15" },
+                { name: "Henrique Vieira Lima", amount: 30.00, event: "Cinema", date: "2023-06-01" }
             ],
             iOwe: [
-                { name: "Fred Scheffel", amount: 25.00, event: "Uber", date: "2023-05-20" },
-                { name: "Laura Pazini", amount: 15.00, event: "Café", date: "2023-06-05" }
+                { name: "Henrique Vieira Lima", amount: 25.00, event: "Uber", date: "2023-05-20" },
+                { name: "Pedro Prestes", amount: 15.00, event: "Café", date: "2023-06-05" },
+                { name: "Pedro Lunkes", amount: 2.00, event: "Vaquinha da cirurgia", date: "2024-06-05" },
             ],
             history: [
-                { name: "Pedro Prestes", amount: 40.00, event: "Presente", date: "2023-04-10", type: "received" },
-                { name: "Henrique Vieira", amount: 20.00, event: "Almoço", date: "2023-05-01", type: "paid" }
+                { name: "Pedro Lunkes", amount: 40.00, event: "Presente", date: "2023-04-10", type: "received" },
+                { name: "Pedro Prestes", amount: 20.00, event: "Almoço", date: "2023-05-01", type: "paid" }
             ]
         },
         friendship: [4, 6, 7]
