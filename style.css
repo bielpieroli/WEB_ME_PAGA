@@ -151,7 +151,7 @@
         border-top: 1px solid #eee;
     }
 
-    .accept-btn, .negate-btn, .viewed-btn {
+    .accept-btn, .negate-btn, .viewed-btn, .create-event-btn {
         background: none;
         border: none;
         color: #555;
@@ -161,7 +161,7 @@
         transition: all 0.3s ease;
     }
 
-    .accept-btn:hover {
+    .accept-btn:hover, .create-event-btn:hover {
         color: white;
         background-color: green;
         border-radius: 3px;
@@ -193,13 +193,13 @@
 
 
 /* Aba Amigos */
-.friend-search {
+.friend-search, .event-creation {
     display: flex;
     margin-bottom: 20px;
     gap: 10px;
 }
 
-.friend-search input {
+.friend-search input, .event-creation input {
     flex: 1;
     padding: 8px;
     border-radius: 5px;
