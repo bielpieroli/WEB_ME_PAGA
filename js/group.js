@@ -96,12 +96,15 @@ document.addEventListener('click', function(e) {
         // console.log('Tentando remover amigo:', arrayIndex);
         // console.log('friendshipDatabase antes:', [...friendshipDatabase]);
         
+        // Procura pelo índice e o remove
         if (arrayIndex >= 0 && arrayIndex < friendshipDatabase.length) {
             friendshipDatabase.splice(arrayIndex, 1);
-            console.log('friendshipDatabase depois:', [...friendshipDatabase]);
+
+            // DEBUG REMOÇÃO
+            // console.log('friendshipDatabase depois:', [...friendshipDatabase]);
             
+            // Atualiza as listas
             updateFriendsList();
-            // Atualiza também a lista de conexões se a função existir
             updateConnectionsList();
         } else {
             console.error('Índice inválido:', arrayIndex);
@@ -119,18 +122,22 @@ function updateFriendsList() {
 
     listElement.innerHTML = '';
     
+    // Se não tem ninguém, então, imprime a mensagem de empty
     if (friendshipDatabase.length === 0) {
         listElement.innerHTML = '<li class="empty-msg">Nenhum amigo adicionado ainda</li>';
         return;
     }
 
+    // Procura por cada amigo com base no database
     friendshipDatabase.forEach((friendId, arrayIndex) => {
         const friend = usersDatabase.find(user => user.id === friendId);
+
         if (!friend) {
             console.error('Usuário não encontrado para ID:', friendId);
             return;
         }
 
+        // Cria os elementos da lista
         const li = document.createElement('li');
         li.innerHTML = `
             <img src="${friend.pic}" alt="Foto do usuário" class="post-avatar">

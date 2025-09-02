@@ -1,4 +1,5 @@
 function setupEventCreation() {
+    // Adiciona o listener do button
     const createEventBtn = document.querySelector('.create-event-btn');
     if (createEventBtn) {
         createEventBtn.addEventListener('click', createEvent);
@@ -19,9 +20,9 @@ function setupEventCreation() {
 async function createEvent() {
     const description = document.getElementById('description-event')?.value.trim();
     const valueInput = document.getElementById('value-event')?.value.trim();
-    const value = parseFloat(valueInput?.replace(',', '.') || '0'); // Suporte para vírgula como separador decimal
+    const value = parseFloat(valueInput?.replace(',', '.') || '0'); 
 
-    // Validações básicas
+    // Validações de campos existentes
     if (!description) {
         showNotification('Por favor, preencha a descrição do evento.', 'error');
         return;
@@ -83,8 +84,8 @@ async function createEvent() {
     });
 
     // Atualiza a interface
-    if (typeof updateWallet === 'function') updateWallet();
-    if (typeof renderDebtLists === 'function') renderDebtLists();
+    updateWallet();
+    renderDebtLists();
 
     // Mostra notificação de sucesso
     showNotification(`Evento "${description}" criado com sucesso! Valor por pessoa: R$ ${valuePerPerson.toFixed(2)}`, 'success');
@@ -172,11 +173,13 @@ function updateConnectionsList() {
 
     listElement.innerHTML = '';
     
+    // Imprime uma mensagem para quem é sozinho #devlove
     if (friendshipDatabase.length === 0) {
         listElement.innerHTML = '<li class="empty-msg">Nenhum amigo adicionado ainda</li>';
         return;
     }
 
+    // Procura pelos amigos na lista de conecções e adiciona uma checkbox para cada nome
     friendshipDatabase.forEach(friendId => {
         const friend = usersDatabase.find(user => user.id === friendId);
         if (!friend) return;

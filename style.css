@@ -327,12 +327,11 @@ main {
 }
 
 #wallet .wallet-card:hover {
-    /* Combinando os dois efeitos de transformação */
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Lista de devedores */
+/* Lista de pessoas que estão devendo */
 #wallet .debt-list {
     display: none;
     margin-top: 10px;
@@ -518,7 +517,6 @@ main {
     transform: translateY(-2px);
 }
 
-/* Ícone de confirmação */
 .payment-btn i {
     font-size: 1.1em;
 }
@@ -527,7 +525,7 @@ main {
 /* Aba Add
 /************************************************************/
 
-/* A lista de amigos */
+/* A lista de conecções */
 #connections-list {
     list-style: none;
     padding: 0;
@@ -656,7 +654,7 @@ main {
     transform: translateY(-2px);
 }
 
-/* Estilos para o switch */
+/* Switch */
 .switch {
     position: relative;
     display: inline-block;
@@ -914,7 +912,7 @@ input:checked + .slider:before {
     .event-creation input,
     .friend-search input {
         padding: 12px;
-        font-size: 16px; /* Evita zoom no iOS */
+        font-size: 16px;
     }
     
     .create-event-btn,
